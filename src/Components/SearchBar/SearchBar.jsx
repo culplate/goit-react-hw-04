@@ -11,7 +11,7 @@ export const SearchBar = () => {
             className={css.searchInput}
             type="text"
             name="search"
-            autoComplte="off"
+            autoComplete="off"
           />
           <button type="submit">Search</button>
         </Form>
