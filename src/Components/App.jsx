@@ -1,19 +1,18 @@
 import { useState } from "react";
 import "./App.css";
 import { SearchBar } from "./SearchBar/SearchBar";
+import { fetchArticles } from "../api";
 
 function App() {
-  const API_KEY = "gOTmj8JmQWGgiHpU4pzX2JYCN-uvE_TdR5QD1-gJgZM";
+  const [query, setQuery] = useState("");
 
-  const [searchVal, setSearchVal] = useState("");
-  const handleSearchInput = (val) => {
-    setSearchVal(val);
-    console.log(searchVal);
+  const handleSearch = async (newQuery) => {
+    setQuery(newQuery);
   };
 
   return (
     <>
-      <SearchBar val={searchVal} onSearch={handleSearchInput} />
+      <SearchBar onSearch={handleSearch} />
     </>
   );
 }

@@ -10,7 +10,7 @@ export const SearchBar = ({ onSearch }) => {
           search: "",
         }}
         onSubmit={(values, actions) => {
-          onSearch(values);
+          onSearch(values.search);
         }}
       >
         <Form className={css.searchForm}>
