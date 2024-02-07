@@ -2,7 +2,7 @@ import css from "./SearchBar.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-export const SearchBar = ({ val, onSearch }) => {
+export const SearchBar = ({ onSearch }) => {
   return (
     <header className={css.head}>
       <Formik
@@ -10,9 +10,7 @@ export const SearchBar = ({ val, onSearch }) => {
           search: "",
         }}
         onSubmit={(values, actions) => {
-          console.log(val);
-          console.log(values);
-          actions.resetForm();
+          onSearch(values);
         }}
       >
         <Form className={css.searchForm}>
@@ -21,8 +19,6 @@ export const SearchBar = ({ val, onSearch }) => {
             type="text"
             name="search"
             autoComplete="off"
-            value={val}
-            onChange={onSearch}
           />
           <button type="submit">Search</button>
         </Form>
