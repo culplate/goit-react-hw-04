@@ -19,6 +19,7 @@ export const SearchBar = ({ onSearch }) => {
             type="text"
             name="search"
             autoComplete="off"
+            placeholder="Search..."
           />
           <button type="submit">Search</button>
         </Form>
