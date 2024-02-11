@@ -3,10 +3,14 @@ import css from "./ImageGallery.module.css";
 
 export const ImageGallery = ({ data }) => {
   return (
-    <div className={css.gallery}>
+    <ul className={css.gallery}>
       {data.map((item) => {
-        return <ImageCard key={item.id} imgData={item} />;
+        return (
+          <li key={item.id}>
+            <ImageCard imgData={item} />
+          </li>
+        );
       })}
-    </div>
+    </ul>
   );
 };
