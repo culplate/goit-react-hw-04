@@ -2,18 +2,19 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { SearchBar } from "./SearchBar/SearchBar";
 import { fetchArticles } from "../api";
+import { ImageGallery } from "./ImageGallery/ImageGallery";
 
 function App() {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [results, setResults] = useState([]);
+  const [photos, setPhotos] = useState([]);
 
   const handleSearch = async (newQuery) => {
     setQuery(`${Date.now()}/${newQuery}`);
     setPage(1);
-    setResults([]);
+    setPhotos([]);
   };
 
   useEffect(() => {
@@ -24,8 +25,7 @@ function App() {
         setLoading(true);
         setError(false);
         const fetchedData = await fetchArticles(query.split("/")[1]); // +page
-        setResults((prevResults) => [...prevResults, ...fetchedData.results]);
-        console.log(fetchedData.results);
+        setPhotos((prevResults) => [...prevResults, ...fetchedData.results]);
       } catch {
         setError(true);
       } finally {
@@ -34,11 +34,13 @@ function App() {
     }
 
     fetchData();
+    console.log(photos);
   }, [query]); //+page
 
   return (
     <>
       <SearchBar onSearch={handleSearch} />
+      {photos.length > 0 && <ImageGallery data={photos} />}
     </>
   );
 }
