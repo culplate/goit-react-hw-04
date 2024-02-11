@@ -1,0 +1,6 @@
+.galleryImg {
+  min-height: 200px;
+  max-height: 280px;
+  width: calc((100% - 20px * 2) / 3);
+  object-fit: cover;
+}
