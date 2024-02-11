@@ -11,6 +11,11 @@ export const SearchBar = ({ onSearch }) => {
         }}
         onSubmit={(values, actions) => {
           onSearch(values.search);
+          actions.resetForm({
+            values: {
+              search: "",
+            },
+          });
         }}
       >
         <Form className={css.searchForm}>

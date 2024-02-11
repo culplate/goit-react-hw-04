@@ -34,7 +34,6 @@ function App() {
     }
 
     fetchData();
-    console.log(photos);
   }, [query]); //+page
 
   return (
