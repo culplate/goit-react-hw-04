@@ -3,6 +3,7 @@ import "./App.css";
 import { SearchBar } from "./SearchBar/SearchBar";
 import { fetchArticles } from "../api";
 import { ImageGallery } from "./ImageGallery/ImageGallery";
+import { Loader } from "./Loader/Loader";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -40,6 +41,7 @@ function App() {
     <>
       <SearchBar onSearch={handleSearch} />
       {photos.length > 0 && <ImageGallery data={photos} />}
+      {loading && <Loader />}
     </>
   );
 }
