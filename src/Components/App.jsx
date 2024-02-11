@@ -4,6 +4,7 @@ import { SearchBar } from "./SearchBar/SearchBar";
 import { fetchArticles } from "../api";
 import { ImageGallery } from "./ImageGallery/ImageGallery";
 import { Loader } from "./Loader/Loader";
+import { ErrorMessage } from "./ErrorMessage/ErrorMessage";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -40,7 +41,11 @@ function App() {
   return (
     <>
       <SearchBar onSearch={handleSearch} />
-      {photos.length > 0 && <ImageGallery data={photos} />}
+      {error ? (
+        <ErrorMessage />
+      ) : photos.length > 0 ? (
+        <ImageGallery data={photos} />
+      ) : null}
       {loading && <Loader />}
     </>
   );
