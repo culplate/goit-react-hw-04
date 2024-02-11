@@ -8,5 +8,5 @@ export const fetchArticles = async (query) => {
     params: { query, client_id: API_KEY },
   });
 
-  return response.data.hits;
+  return response.data;
 };
