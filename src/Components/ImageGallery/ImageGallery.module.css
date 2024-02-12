@@ -8,8 +8,7 @@
 }
 
 .gallery li {
-  min-height: 200px;
-  max-height: 280px;
+  height: 230px;
   width: calc((100% - 20px * 2) / 3);
   overflow: hidden;
   transition: transform 0.15s ease-out;

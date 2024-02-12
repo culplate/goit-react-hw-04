@@ -5,6 +5,7 @@
 
 .galleryImg {
   object-fit: cover;
+  object-position: center;
   width: inherit;
   height: inherit;
 }
