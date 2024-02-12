@@ -5,6 +5,7 @@ import { fetchArticles } from "../api";
 import { ImageGallery } from "./ImageGallery/ImageGallery";
 import { Loader } from "./Loader/Loader";
 import { ErrorMessage } from "./ErrorMessage/ErrorMessage";
+import { LoadMoreBtn } from "./LoadMoreBtn/LoadMoreBtn";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -19,6 +20,8 @@ function App() {
     setPhotos([]);
   };
 
+  const handleLoadMore = () => setPage(page + 1);
+
   useEffect(() => {
     if (query === "") return;
 
@@ -26,7 +29,7 @@ function App() {
       try {
         setLoading(true);
         setError(false);
-        const fetchedData = await fetchArticles(query.split("/")[1]); // +page
+        const fetchedData = await fetchArticles(query.split("/")[1], page); // +page
         setPhotos((prevResults) => [...prevResults, ...fetchedData.results]);
       } catch {
         setError(true);
@@ -36,7 +39,7 @@ function App() {
     }
 
     fetchData();
-  }, [query]); //+page
+  }, [query, page]); //+page
 
   return (
     <>
@@ -47,6 +50,9 @@ function App() {
         <ImageGallery data={photos} />
       ) : null}
       {loading && <Loader />}
+      {photos.length > 0 && !loading && (
+        <LoadMoreBtn loadMore={handleLoadMore} />
+      )}
     </>
   );
 }
