@@ -13,11 +13,13 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [photos, setPhotos] = useState([]);
+  const [total, setTotal] = useState(null);
 
   const handleSearch = async (newQuery) => {
     setQuery(`${Date.now()}/${newQuery}`);
     setPage(1);
     setPhotos([]);
+    setTotal(null);
   };
 
   const handleLoadMore = () => setPage(page + 1);
@@ -31,6 +33,7 @@ function App() {
         setError(false);
         const fetchedData = await fetchArticles(query.split("/")[1], page); // +page
         setPhotos((prevResults) => [...prevResults, ...fetchedData.results]);
+        setTotal(fetchedData.total);
       } catch {
         setError(true);
       } finally {
@@ -45,12 +48,16 @@ function App() {
     <>
       <SearchBar onSearch={handleSearch} />
       {error ? (
-        <ErrorMessage />
+        <ErrorMessage>
+          Whoops! Something bad happened, try reloading page 🥲
+        </ErrorMessage>
       ) : photos.length > 0 ? (
         <ImageGallery data={photos} />
       ) : null}
+      {total === 0 && <ErrorMessage>No results found 🙁</ErrorMessage>}
+
       {loading && <Loader />}
-      {photos.length > 0 && !loading && (
+      {photos.length > 0 && page * 9 <= total && !loading && !error && (
         <LoadMoreBtn loadMore={handleLoadMore} />
       )}
     </>
