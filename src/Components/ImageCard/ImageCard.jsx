@@ -1,3 +1,4 @@
+import Modal from "react-modal";
 import css from "./ImageCard.module.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
