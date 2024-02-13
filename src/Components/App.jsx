@@ -60,6 +60,11 @@ function App() {
       {photos.length > 0 && page * 9 <= total && !loading && !error && (
         <LoadMoreBtn loadMore={handleLoadMore} />
       )}
+      {/* {photos.length > 0 && !loading && (
+        <span>
+          {page * 9}/{total}
+        </span>
+      )} */}
     </>
   );
 }
