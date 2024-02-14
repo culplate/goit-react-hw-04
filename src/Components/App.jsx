@@ -31,7 +31,7 @@ function App() {
       try {
         setLoading(true);
         setError(false);
-        const fetchedData = await fetchArticles(query.split("/")[1], page); // +page
+        const fetchedData = await fetchArticles(query.split("/")[1], page);
         setPhotos((prevResults) => [...prevResults, ...fetchedData.results]);
         setTotal(fetchedData.total);
       } catch {
@@ -42,7 +42,7 @@ function App() {
     }
 
     fetchData();
-  }, [query, page]); //+page
+  }, [query, page]);
 
   return (
     <>
@@ -55,16 +55,10 @@ function App() {
         <ImageGallery data={photos} />
       ) : null}
       {total === 0 && <ErrorMessage>No results found 🙁</ErrorMessage>}
-
       {loading && <Loader />}
       {photos.length > 0 && page * 9 <= total && !loading && !error && (
         <LoadMoreBtn loadMore={handleLoadMore} />
       )}
-      {/* {photos.length > 0 && !loading && (
-        <span>
-          {page * 9}/{total}
-        </span>
-      )} */}
     </>
   );
 }
