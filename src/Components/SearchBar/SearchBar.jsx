@@ -6,10 +6,13 @@ import * as Yup from "yup";
 export const SearchBar = ({ onSearch }) => {
   const searchSchema = Yup.object().shape({
     search: Yup.string()
-      .min(3, "Must be at least 3 symbols long")
-      .max(50, "Too Long! (max. 50 symbols)")
-      .required("Input your search request"),
+      .min(3, "")
+      .required(() => {
+        toast("Input your search request");
+        return null;
+      }),
   });
+
   return (
     <header className={css.head}>
       <Formik
@@ -18,29 +21,28 @@ export const SearchBar = ({ onSearch }) => {
           search: "",
         }}
         onSubmit={(values, actions) => {
-          onSearch(values.search);
-          actions.resetForm({
-            values: {
-              search: "",
-            },
-          });
+          if (values.search.trim() === "") return;
+          onSearch(values.search.trim());
+          actions.resetForm();
         }}
       >
-        {({ errors, touched }) => (
-          <Form className={css.searchForm}>
-            <Field
-              className={css.searchInput}
-              type="text"
-              name="search"
-              autoComplete="off"
-              placeholder="Search..."
-            />
-            {errors.search && touched.search && toast(errors.search)}
-            <Toaster id="123" position="top-right" />
-            <button type="submit">Search</button>
-          </Form>
-        )}
+        <Form className={css.searchForm}>
+          <Field
+            className={css.searchInput}
+            type="text"
+            name="search"
+            autoComplete="off"
+            placeholder="Search..."
+          />
+          <button type="submit">Search</button>
+          <ErrorMessage
+            className={css.errorMes}
+            component="span"
+            name="search"
+          />
+        </Form>
       </Formik>
+      <Toaster id="123" position="top-right" />
     </header>
   );
 };

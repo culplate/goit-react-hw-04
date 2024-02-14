@@ -11,7 +11,7 @@
   text-align: center;
 }
 .searchInput {
-  margin: 10px auto;
+  margin: 20px auto;
   padding: 2px 4px;
   border: none;
   border-bottom: 1px solid #fefefe;
@@ -22,8 +22,6 @@
 }
 
 .searchInput:focus {
-  /* box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.15); */
-  /* background-color: #fff; */
   border-bottom: 1px solid #910a67;
 }
 
@@ -54,6 +52,8 @@
   background-color: #910a67;
 }
 
-.errorWrap {
-  display: none;
+.errorMes {
+  position: absolute;
+  top: 0;
+  left: 50%;
 }
