@@ -1,13 +1,12 @@
 import Modal from "react-modal";
 import css from "./ImageCard.module.css";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export const ImageCard = ({ imgData }) => {
   return (
     <div className={css.wrapper}>
-      <LazyLoadImage
+      <img
         className={css.galleryImg}
-        alt={imgData.alt_description}
+        alt={imgData.alt_description || "Default image"}
         src={imgData.urls.small}
       />
     </div>
