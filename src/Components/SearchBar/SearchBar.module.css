@@ -53,3 +53,7 @@
 .searchForm button:active {
   background-color: #910a67;
 }
+
+.errorWrap {
+  display: none;
+}
